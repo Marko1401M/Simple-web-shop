@@ -61,16 +61,16 @@
 
     </div>
     <div id="register" style="display:none;">
-        <form method="POST">
-            <input name="username" type="text" placeholder="korisnicko ime"><br>
-            <input name="ime" type="text" placeholder="ime"><br>
-            <input name="prezime" type="text" placeholder="prezime"><br>
-            <input name="broj-telefona" type="text" placeholder="broj telefona"><br>
-            <input name="mail" type="email" placeholder="email"><br>
-            <input name="password" type="password" placeholder ="lozinka"><br>
-            <input name="password2" type="password" placeholder ="potvrdi lozinku"><br>
-            <input name="remember" type="checkbox">Zapamti me<br>
-            <input id="reg-btn" type="submit" value="Register">
+        <form id="register-forma" method="POST">
+            <input id="username" name="username" type="text" placeholder="korisnicko ime" required><br>
+            <input id="ime" name="ime" type="text" placeholder="ime" required><br>
+            <input id="prezime" name="prezime" type="text" placeholder="prezime" required><br>
+            <input id="broj-telefona" name="broj-telefona" type="text" placeholder="broj telefona" required><br>
+            <input id="mail" name="mail" type="email" placeholder="email" required><br>
+            <input id="password" name="password" type="password" placeholder ="lozinka" required><br>
+            <input id="password2" name="password2" type="password" placeholder ="potvrdi lozinku" required><br>
+            <input name="remember" type="checkbox" required>Zapamti me<br>
+            <input id="reg-btn" type="button" onclick="validateRegister()" value="Register">
         </form>
         <?php 
             if(!$checkUserExists){
@@ -81,6 +81,37 @@
 </div>
 
 <script>
+    function validateRegister(){
+        if(document.getElementById('username').value == ""){
+            alert('Niste uneli username');
+            return;
+        }
+        if(document.getElementById('ime').value  == ""){
+            alert('Niste uneli ime');
+            return;
+        }
+        if(document.getElementById('prezime').value  == ""){
+            alert('Niste uneli prezime');
+            return;
+        }
+        if(document.getElementById('broj-telefona').value  == ""){
+            alert('Niste uneli broj telefona');
+            return;
+        }
+        if(document.getElementById('mail').value  == ""){
+            alert('Niste uneli mail');
+            return;
+        }
+        if(document.getElementById('password').value  == ""){
+            alert('Niste uneli sifru');
+            return;
+        }
+        if(document.getElementById('password2').value  == ""){
+            alert('Niste potvrdili sifru');
+            return;
+        }
+        document.getElementById('register-forma').submit();
+    }
     function register(){
         document.getElementById('login').style.display = 'none';
         document.getElementById('register').style.display = '';
