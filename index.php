@@ -46,8 +46,8 @@
 </div>
 
 <div id ='sredina'>
+<input style="border:1px solid blue;width:250px;height:40px;font-size:35px;margin-bottom:10px" type="text" id="search" onkeyup="search()"><br>
     <div id="oglasi">
-    
         <?php foreach($oglasi as $oglas){ ?>
             <div onclick="prikaziOglas(<?php echo $oglas['id']; ?>)" id="oglas">
                 <img src="<?php echo $oglas['path_slike']; ?>">
@@ -68,7 +68,6 @@
     function prikaziOglas(id){
         window.location="prikazi.php?id="+id;
     }
-    
     function prikaziOglase(oglasi){
         let pom = '';
         oglasi.forEach(element => {
@@ -81,8 +80,22 @@
             pom += '</div>';
         });
         document.getElementById('oglasi').innerHTML = pom;
+        document.getElementById
     }
     function prikaziKategoriju(id){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                let oglasi = JSON.parse(this.responseText);
+                console.log(oglasi);
+                prikaziOglase(oglasi);
+            }
+        }
+        xhttp.open('GET','prikazi_kategoriju.php?id=' + id,true);
+        xhttp.send();
+    }
+    function search(){
+        let text = document.getElementById('search').value;
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.status == 200 && this.readyState == 4){
@@ -90,7 +103,7 @@
                 prikaziOglase(oglasi);
             }
         }
-        xhttp.open('GET','prikazi_kategoriju.php?id=' + id,true);
+        xhttp.open('GET','pretrazi.php?naslov=' + text, true);
         xhttp.send();
     }
 </script>

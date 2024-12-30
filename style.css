@@ -421,3 +421,7 @@ img{
     color:black;
     background-color: rgb(252, 252, 252);
 }
+
+#oglasi input[type="text"]{
+    background-color: red;
+}

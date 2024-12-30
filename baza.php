@@ -148,4 +148,17 @@ class BazaKP{
 
         }
     }
+    public function pretrazi($naslov){
+        try{
+            $sql = "SELECT * FROM oglas WHERE naslov LIKE :naslov";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':naslov', $naslov . '%', PDO::PARAM_STR);
+            $stmt->execute();
+            $oglasi = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $oglasi;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
 }
