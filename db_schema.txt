@@ -1,0 +1,36 @@
+USER:
+	-id
+	-username
+	-password
+USER_INFO:
+	-user_id
+	-ime
+	-prezime
+	-datum_rodjenja
+	-broj_telefona
+PORUKA:
+	-id
+	-chat_id
+	-text	
+	-sender_id
+	-reciever_id
+OGLAS:	
+	-id
+	-id_korisnika
+	-naslov
+	-id_kategorije
+	-path_slike
+	-tekst
+MAILS:
+	-user_id
+	-mail
+KATEGORIJA:
+	-id
+	-naziv
+FOLLOW:
+	-id
+	-id_oglasa
+	-id_korisnika
+CHAT:	
+	-sender_id
+	-reciever_id
