@@ -219,7 +219,7 @@ input::placeholder{
 }
 
 body{
-    background-color: rgb(141, 141, 204);
+    background-color: rgb(184, 184, 236);
 }
 
 #logOut{
@@ -422,6 +422,3 @@ img{
     background-color: rgb(252, 252, 252);
 }
 
-#oglasi input[type="text"]{
-    background-color: red;
-}
