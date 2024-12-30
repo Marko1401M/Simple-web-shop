@@ -79,7 +79,9 @@ class BazaKP{
     public function deleteOglas($id){
         try{
             $sql = "DELETE from oglas where id = '$id'";
-            $this->dbh->query($sql);
+            $this->dbh->exec($sql);
+            $sql = "DELETE from follow where id_oglasa = '$id'";
+            $this->dbh->exec($sql);
         }
         catch(PDOException $e) {
             header('Location: index.php');
