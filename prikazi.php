@@ -23,9 +23,9 @@
     <h3>Dobrodosao <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
     <div id="profil">
         <ul>  
-            <li><a>Moj profil</a></li>
-            <li><a>Moji oglasi</a></li>
-            <li><a>Oglasi koje pratim</a></li>
+            <li><a href="moj_profil.php">Moj profil</a></li>
+            <li><a href="moji_oglasi.php">Moji oglasi</a></li>
+            <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a>Prijatelji</a></li>
             <li><a>Poruke</a></li>
             <li><a>Adresar</a></li>

@@ -102,7 +102,7 @@ input::placeholder{
 
 #sredina{
     float:left;
-    width:50%;
+    width:60%;
     overflow: hidden;
     font-size:20px;
     margin-right:20px;
@@ -130,6 +130,9 @@ input::placeholder{
 
 #sredina #oglas > img{
     width:120px;
+    height:120px;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 #tekst{
@@ -244,6 +247,11 @@ body{
     float:left;
     border:1px solid blue;
     margin-right:20px;
+    width:500px;
+}
+
+#prikaz-oglasa p{
+    clear:left;
 }
 
 #snd-msg{
