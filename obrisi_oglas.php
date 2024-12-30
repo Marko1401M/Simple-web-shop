@@ -1,0 +1,12 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['id'])){
+        session_destroy();
+        header('Location: login.php');
+        exit();
+    }
+    require_once 'baza.php';
+    $baza = new BazaKP();
+    $baza->deleteOglas($_GET['id']);
+    echo json_encode($baza->getOglasiById($_SESSION['id']));
+?>

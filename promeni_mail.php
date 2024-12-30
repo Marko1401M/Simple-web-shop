@@ -1,0 +1,32 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION['id'])){
+        session_destroy();
+        header('Location: login.php');
+        exit();
+    }
+    require_once 'baza.php';
+    $baza = new BazaKP();
+    $kategorije = $baza->getKategorije();
+    if(isset($_POST['mail'])){
+        $baza->updateMail($_SESSION['id'], $_POST['mail']);
+        header('moj_profil.php');
+        exit();
+    }
+?>
+<link rel="stylesheet" href="style.css">
+
+<div id="dodajOglas">
+    <form id="forma" method="POST">
+        Unesite mail:<br>
+        <input name="mail" type="mail"><br><br>
+        <input type="button" onclick="promeniMail()" value="Promeni">
+    </form>
+    
+</div>
+
+<script>
+    function promeniMail(){
+        document.getElementById('forma').submit();
+    }
+</script>
