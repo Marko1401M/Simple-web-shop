@@ -11,6 +11,8 @@
             if($baza->checkUsername($_POST['username'])){
                 $baza->register($_POST['username'], $password);
                 $user = $baza->login($_POST['username'], $password);
+                $baza->addUserInfo($user['id'],$_POST['ime'],$_POST['prezime'],$_POST['broj-telefona']);
+                $baza->updateMail($user['id'], $_POST['mail']);
                 session_start();
                 $_SESSION['id'] = $user['id'];
                 setcookie('username',$_POST['username'],time() + 80000*2);
@@ -50,23 +52,26 @@
             <input name="username" type="text" placeholder="korisnicko ime"><br>
             <input name="password" type="password" placeholder ="lozinka"><br>
             <input name="remember" type="checkbox">Zapamti me<br>
-            <input type="submit" value="Login">
+            <input id="log-btn" type="submit" value="Login">
         </form>
         <?php if(!$checkValidCred){ ?>
             <h4 style="color:red;">Username/sifra se ne poklapaju!</h4>
         <?php } ?>
-        <button onclick="register()">Novi nalog!</button>
+        <button id="new-btn" onclick="register()">Novi nalog!</button>
 
     </div>
     <div id="register" style="display:none;">
         <form method="POST">
             <input name="username" type="text" placeholder="korisnicko ime"><br>
+            <input name="ime" type="text" placeholder="ime"><br>
+            <input name="prezime" type="text" placeholder="prezime"><br>
+            <input name="broj-telefona" type="text" placeholder="broj telefona"><br>
+            <input name="mail" type="email" placeholder="email"><br>
             <input name="password" type="password" placeholder ="lozinka"><br>
             <input name="password2" type="password" placeholder ="potvrdi lozinku"><br>
             <input name="remember" type="checkbox">Zapamti me<br>
-            <input type="submit" value="Register">
+            <input id="reg-btn" type="submit" value="Register">
         </form>
-        <button onclick="register()">Novi nalog!</button>
         <?php 
             if(!$checkUserExists){
         ?>

@@ -20,13 +20,14 @@
 
     $user = $baza->getUserById($_SESSION['id']);
     $kategorije = $baza->getKategorije();
+    $userInfo = $baza->getUserInfo($_SESSION['id']);
     $oglasi = $baza->getOglasi();//Naravno ovo nije dobra ideja ako ima preveliki broj oglasa, ali obzirom da je ovo sam primer onda neka ga
 ?>
 <div id="cnt">
 <div id="leviMeni">
     <a id="logOut" href="index.php?Logout">LogOut</a>
 
-    <h3>Dobrodosao <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
+    <h3>Dobrodosao <?php if($userInfo) echo $userInfo['ime']." ".$userInfo['prezime']. " "; ?> <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
     <div id="profil">
         <ul>  
             <li><a href="moj_profil.php">Moj profil</a></li>

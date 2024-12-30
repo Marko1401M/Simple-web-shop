@@ -34,7 +34,6 @@
         <input id="password-new-conf"  name="password-new-conf"  type="password"><br><br>
         <input onclick="promeniSifru()" type="button" value="Promeni sifru">
     </form>
-    
 </div>
 
 <script>

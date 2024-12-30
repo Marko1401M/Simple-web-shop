@@ -110,7 +110,7 @@ class BazaKP{
         $sql = "SELECT * from mails where user_id = '$id'";
         $stmt = $this->dbh->query($sql);
         if($stmt->rowCount() > 0){
-            $sql = "UPDATE mails set mail='$mail' where id = '$id'";
+            $sql = "UPDATE mails set mail='$mail' where user_id = '$id'";
         }
         else{
             $sql = "INSERT INTO mails(user_id, mail) VALUES('$id','$mail')";
@@ -125,5 +125,25 @@ class BazaKP{
             return $mail['mail'];
         }
         catch(PDOException $e){}
+    }
+    public function addUserInfo($id, $ime, $prezime, $broj_telefona){
+        try{
+            $sql = "INSERT into user_info(user_id, ime, prezime, broj_telefona) VALUES('$id','$ime','$prezime','$broj_telefona')";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function getUserInfo($id){
+        try{
+            $sql = "SELECT * from user_info where user_id = '$id'";
+            $stmt = $this->dbh->query($sql);
+            $info = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $info;
+        }
+        catch(PDOException $e){
+
+        }
     }
 }

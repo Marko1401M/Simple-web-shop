@@ -19,6 +19,7 @@
 
     $user = $baza->getUserById($_SESSION['id']);
     $kategorije = $baza->getKategorije();
+    $userInfo = $baza->getUserInfo($_SESSION['id']);
     $oglasi = $baza->getOglasiById($_SESSION['id']);
 ?>
 <div id="cnt">
@@ -48,12 +49,12 @@
         <div id="info-profil">
             <h1>Moj profil</h1>
             <h4>Username:<span> <?php echo $user['username']; ?></span></h4>
-            <h4>Ime:<span> Pera </span></h4>
-            <h4>Prezime:<span> Peric</span></h4>
+            <h4>Ime:<span><?php if($userInfo) echo $userInfo['ime']; else { ?>  Pera  <?php } ?></span></h4>
+            <h4>Prezime:<span><?php if($userInfo) echo $userInfo['prezime']; else { ?> Peric <?php } ?></span></h4>
             <h4>Email: <span><?php echo $baza->getMail($_SESSION['id']) ?></span></h4>
             <h4>Broj oglasa: <span><?php echo count($oglasi) ?></span></h4>
             <h4 id="cng-pw" onclick="promeniSifru(<?php echo $_SESSION['id']; ?>)">Promeni sifru</h4>
-            <h4 id="cng-mail" onclick="prmoeniMail(<?php echo $_SESSION['id']; ?>)">Promeni mail</h4>
+            <h4 id="cng-mail" onclick="promeniMail(<?php echo $_SESSION['id']; ?>)">Promeni mail</h4>
         </div>
         
     </div>
@@ -85,5 +86,7 @@
     function promeniSifru(){
         window.location="change_password.php";
     }
-
+    function promeniMail(){
+        window.location = "promeni_mail.php";
+    }
 </script>

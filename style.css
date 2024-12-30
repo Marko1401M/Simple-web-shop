@@ -36,6 +36,20 @@ input[type='text']:focus,input[type='password']:focus{
     outline: 1px solid rgb(14, 14, 123);
 }
 
+input[type='email']{
+    background-color:rgb(143, 143, 238);
+    border:none;
+    margin:2px;
+    border-radius:5px;
+}
+
+input[type='email']:focus{
+    border:none;
+    background-color:rgb(115, 115, 241);
+    outline: 1px solid rgb(14, 14, 123);
+}
+
+
 input::placeholder{
     color:rgb(80, 78, 78);
 }
@@ -382,4 +396,20 @@ img{
     background-color:rgb(115, 115, 241);
     outline: 1px solid rgb(14, 14, 123);
     cursor:pointer;
+}
+
+#log-btn, #reg-btn, #new-btn{
+    padding:5px;
+    background-color: rgb(14, 14, 123);;
+    color:rgb(202, 209, 223);
+    text-decoration: none;
+    border:1px solid rgb(252, 252, 252);
+    cursor:pointer;
+}
+
+#log-btn:hover, #reg-btn:hover, #new-btn:hover{
+    padding:5px;
+    border:1px solid rgb(14, 14, 123);
+    color:black;
+    background-color: rgb(252, 252, 252);
 }

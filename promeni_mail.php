@@ -10,7 +10,7 @@
     $kategorije = $baza->getKategorije();
     if(isset($_POST['mail'])){
         $baza->updateMail($_SESSION['id'], $_POST['mail']);
-        header('moj_profil.php');
+        header('Location: moj_profil.php');
         exit();
     }
 ?>
