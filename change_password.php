@@ -22,7 +22,7 @@
         }
     }
 ?>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 
 <div id="dodajOglas">
     <form id="forma" method="POST">

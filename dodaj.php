@@ -16,7 +16,7 @@
         exit();
     }
 ?>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 <div id="dodajOglas">
     <?php if(!isset($_POST['kat-sel'])){ ?>
         <form id="dodajOglasForma" method="POST" enctype="multipart/form-data">

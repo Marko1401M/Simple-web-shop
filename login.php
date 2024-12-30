@@ -44,7 +44,7 @@
 
 ?>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 
 <div id="page">
     <div id="login">
