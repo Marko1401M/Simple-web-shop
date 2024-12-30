@@ -7,7 +7,7 @@
         header('Location: login.php');
         exit();
     }
-    require_once 'baza.php';
+    require_once 'db/baza.php';
     $baza = new BazaKP();
     $oglas = $baza->getOglas($_GET['id']);
     $kategorije = $baza->getKategorije();

@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <?php 
-    require_once 'baza.php';
+    require_once 'db/baza.php';
     $baza = new BazaKP();
     session_start();
     if(!isset($_SESSION['id'])){

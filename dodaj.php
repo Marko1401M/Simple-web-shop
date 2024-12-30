@@ -4,7 +4,7 @@
         session_destroy();
         header('Location: login.php');
     }
-    require_once 'baza.php';
+    require_once 'db/baza.php';
     $baza = new BazaKP();
     $kategorije = $baza->getKategorije();
     if(isset($_POST['naslov'])){

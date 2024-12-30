@@ -5,7 +5,7 @@
         header('Location: login.php');
         exit();
     }
-    require_once 'baza.php';    
+    require_once 'db/baza.php';  
     $baza = new BazaKP();
     if(!isset($_GET['unfollow'])){
         $baza->followOglas($_GET['id_oglasa'],$_SESSION['id']);

@@ -1,6 +1,6 @@
 
 <?php 
-    require_once 'baza.php';
+    require_once 'db/baza.php';
     $baza = new BazaKP();
     $checkPassMatch = true;
     $checkUserExists = true;

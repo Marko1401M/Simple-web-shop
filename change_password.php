@@ -5,7 +5,7 @@
         header('Location: login.php');
         exit();
     }
-    require_once 'baza.php';
+    require_once 'db/baza.php';
     $baza = new BazaKP();
     $kategorije = $baza->getKategorije();
     if(isset ($_POST['password'])){
