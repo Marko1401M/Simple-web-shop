@@ -13,6 +13,8 @@
     $kategorije = $baza->getKategorije();
     $user = $baza->getUserById($_SESSION['id']);
     $autor = $baza->getUserById($oglas['id_korisnika']);
+    $autorInfo = $baza->getUserInfo($autor['id']);
+    $mail = $baza->getMail($autor['id']);
 ?>
 
 
@@ -51,7 +53,16 @@
         <a onclick="zapratiOglas(<?php echo $oglas['id'] ?>,<?php echo $_SESSION['id']; ?>)" id="flw-oglas">Zaprati oglas</a>   
         <?php } ?> 
         </div>
-        <p><?php echo $oglas['tekst'] ?></p>
+        <div id="kontakt">
+            <h3 style="overflow:hidden;width:500px;border-bottom:1px solid white;">Kontakt: </h3>
+            <h5 style="overflow:hidden;width:300px;border-bottom:1px solid blue">Broj telefona: <span style="color:white;font-style:italic;"><?php echo $autorInfo['broj_telefona'] ?></span></h5>
+            <h5 style="overflow:hidden;width:300px;border-bottom:1px solid blue">E-Mail adresa: <span style="color:white;font-style:italic;"><?php echo $mail ?></span></h5>
+        </div>
+        <div style="clear:left;"></div>
+        <br>
+        <div id = "text-oglasa">
+            <p><?php echo $oglas['tekst'] ?></p>
+        </div>
     </div>
 </div>
 

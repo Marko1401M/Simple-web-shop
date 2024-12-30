@@ -422,3 +422,9 @@ img{
     background-color: rgb(252, 252, 252);
 }
 
+#text-oglasa {
+    border: 1px solid white;
+    width:600px;
+    background-color: rgba(240, 248, 255, 0.254);
+    padding:10px;
+}
