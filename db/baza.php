@@ -161,4 +161,17 @@ class BazaKP{
             echo $e->getMessage();
         }
     }
+    public function findUserByUsername($username){
+        try{
+            $sql = "SELECT * FROM user where username LIKE :username";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue(':username',$username . '%', PDO::PARAM_STR);
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $users;
+        }
+        catch(PDOException $e){
+            
+        }
+    }
 }

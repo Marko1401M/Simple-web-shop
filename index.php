@@ -24,6 +24,7 @@
     $oglasi = $baza->getOglasi();//Naravno ovo nije dobra ideja ako ima preveliki broj oglasa, ali obzirom da je ovo sam primer onda neka ga
 ?>
 <div id="cnt">
+
 <div id="leviMeni">
     <a id="logOut" href="index.php?Logout">LogOut</a>
 
@@ -42,6 +43,14 @@
         <?php foreach($kategorije as $kategorija){ ?>
             <a><?php echo $kategorija['naziv']; ?></a>
         <?php } ?>
+    </div>
+    <div style="border-top:1px solid blue;margin-top:5px;margin-bottom:5px;padding:5px;" id="korisnici">
+        <h4 style="margin-bottom:0">Pretrazi korisnike: <input id="src-btn-usr" onclick="pretraziKorisnike()" type="button" value="Pretrazi">    </h4>
+        <input id='search-korisnika' type="text">
+        <div id="prikaz-korisnika">
+
+        </div>
+        
     </div>
 </div>
 
@@ -79,6 +88,28 @@
         });
         document.getElementById('oglasi').innerHTML = pom;
         document.getElementById
+    }
+    function pretraziKorisnike(){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                let users = JSON.parse(this.responseText);
+                console.log(users);
+                prikaziKorisnike(users);
+            }
+        }
+        xhttp.open('GET','pretrazi_korisnike.php?name='+ document.getElementById('search-korisnika').value,true);
+        xhttp.send();
+    }
+    function prikaziKorisnike(users){
+        let pom = '<ul>';
+        users.forEach(element => {
+            pom += '<li>'
+            pom += element.username;
+            pom += '</li>';
+        });
+        pom += '</ul>';
+        document.getElementById('prikaz-korisnika').innerHTML = pom;
     }
     function prikaziKategoriju(id){
         let xhttp = new XMLHttpRequest();

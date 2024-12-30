@@ -428,3 +428,19 @@ img{
     background-color: rgba(240, 248, 255, 0.254);
     padding:10px;
 }
+
+#src-btn-usr{
+    padding:5px;
+    background-color: rgb(14, 14, 123);;
+    color:rgb(202, 209, 223);
+    text-decoration: none;
+    border:1px solid rgb(252, 252, 252);
+    cursor:pointer;
+}
+
+#src-btn-usr:hover{
+    padding:5px;
+    border:1px solid rgb(14, 14, 123);
+    color:black;
+    background-color: rgb(252, 252, 252);
+}
