@@ -41,7 +41,7 @@ input::placeholder{
 }
 #leviMeni{
     position: sticky;
-    width:25%;
+    width:15%;
     background-color: rgb(153, 153, 245);
     border:1px solid blue;
     border-radius:16px;
@@ -180,6 +180,7 @@ input::placeholder{
     text-decoration: none;
 }
 #desno{
+    width:15%;
     border:1px solid blue;
     background-color: rgb(153, 153, 245);
     overflow: hidden;

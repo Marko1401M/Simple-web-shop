@@ -15,5 +15,5 @@
         $baza->unfollowOglas($_GET['id_oglasa'],$_SESSION['id']);
         echo json_encode([-1]);
     }
-    
+
 ?>
