@@ -74,9 +74,7 @@
             pom += '<div id="oglas">';
             pom += '<img src="' + element.path_slike + '">';
             pom += '<h3>' + element.naslov + '</h3>';
-            pom += '<a onclick = "deleteOglas(' + element.id + ')">Obrisi oglas</a>'
-            pom += '<a onclick = "prikaziOglas(' + element.id + ')">Prikazi oglas</a>'
-            pom += '<a onclick = "izmeniOglas(' + element.id + ')">Izmeni oglas</a>'
+            pom += '<p>' + element.tekst + '</p>';
             pom += '</div>';
         });
         document.getElementById('oglasi').innerHTML = pom;
