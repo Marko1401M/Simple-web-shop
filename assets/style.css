@@ -444,3 +444,20 @@ img{
     color:black;
     background-color: rgb(252, 252, 252);
 }
+
+#lista-korisnika{
+    list-style: none;
+    padding:10px;
+    
+}
+
+#lista-korisnika a{
+    cursor:pointer;
+
+}
+
+#lista-korisnika a:hover{
+    background-color: rgba(255, 255, 255, 0.293);
+    border-radius:16px;
+    padding:5px;
+}

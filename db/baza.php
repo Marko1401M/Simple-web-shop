@@ -171,7 +171,51 @@ class BazaKP{
             return $users;
         }
         catch(PDOException $e){
-            
+            echo $e->getMessage();
+        }
+    }
+
+    public function sendFriendRequest($id_from, $id_to){
+        try{
+            if($this->checkFriendRequest($id_from, $id_to)) return;
+            $sql = "INSERT into friend_request(id_from, id_to, status) VALUES('$id_from','$id_to','waiting')";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    public function checkFriend($id1, $id2){
+        try{
+            $sql = "SELECT * from friend where (id_user1 = '$id1' and id_user2 = '$id2') or (id_user1 = '$id2' and id_user2 = '$id1')";
+            $stmt = $this->dbh->query($sql);
+            if($stmt->rowCount() > 0) return true;
+            return false;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    public function checkFriendRequest($id1, $id2){
+        try{
+            $sql = "SELECT * from friend_request where id_from = '$id1' and id_to = '$id2' and status = 'waiting'";
+            $stmt = $this->dbh->query($sql);
+            if($stmt->rowCount() > 0) return true;
+            return false;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    public function getFriendRequests($id){
+        try{
+            $sql = "SELECT * from friend_request where id_to = '$id'";
+            $stmt = $this->dbh->query($sql);
+            $reqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $reqs;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
         }
     }
 }

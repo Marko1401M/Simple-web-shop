@@ -102,14 +102,17 @@
         xhttp.send();
     }
     function prikaziKorisnike(users){
-        let pom = '<ul>';
+        let pom = '<ul id ="lista-korisnika" >';
         users.forEach(element => {
-            pom += '<li>'
+            pom += '<li><a onclick="prikaziKorisnika('+element.id+')">'
             pom += element.username;
-            pom += '</li>';
+            pom += '</a></li>';
         });
         pom += '</ul>';
         document.getElementById('prikaz-korisnika').innerHTML = pom;
+    }
+    function prikaziKorisnika(id){
+        window.location = "prikaz_korisnika.php?id=" + id;
     }
     function prikaziKategoriju(id){
         let xhttp = new XMLHttpRequest();
@@ -133,6 +136,6 @@
             }
         }
         xhttp.open('GET','pretrazi.php?naslov=' + text, true);
-        xhttp.send();
+        xhttp.send();   
     }
 </script>
