@@ -18,6 +18,10 @@
     }
 
     $user = $baza->getUserById($_GET['id']);
+    if($_SESSION['id'] == $user['id']){
+        header('Location: moj_profil.php');
+        exit();
+    }
     $kategorije = $baza->getKategorije();
     $userInfo = $baza->getUserInfo($_GET['id']);
     $oglasi = $baza->getOglasiById($_GET['id']);
@@ -26,7 +30,7 @@
 <div id="leviMeni">
     <a id="logOut" href="index.php?Logout">LogOut</a>
 
-    <h3>Dobrodosao <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
+    <h3>Dobrodosao <span style="color:blue;"><?php echo $baza->getUserById($_SESSION['id'])['username']; ?></span>!</h3>
     <div id="profil">
         <ul>  
             <li><a style="color:darkblue;">Moj profil</a></li>
@@ -51,9 +55,10 @@
             <h4>Username:<span> <?php echo $user['username']; ?></span></h4>
             <h4>Ime:<span><?php if($userInfo) echo $userInfo['ime']; else { ?>  Pera  <?php } ?></span></h4>
             <h4>Prezime:<span><?php if($userInfo) echo $userInfo['prezime']; else { ?> Peric <?php } ?></span></h4>
-            <h4>Email: <span><?php echo $baza->getMail($_SESSION['id']) ?></span></h4>
+            <h4>Email: <span><?php echo $baza->getMail($user['id']) ?></span></h4>
             <h4>Broj oglasa: <span><?php echo count($oglasi) ?></span></h4>
             <div id="prikaz-btns">
+            <?php if($_SESSION['id'] != $user['id']){ ?>
             <?php if($baza->checkFriend($_SESSION['id'], $_GET['id'])){ ?>
                 <h4 id="snd-frnd-req" onclick="removeFriend(<?php echo $_SESSION['id'] ?>, <?php echo $_GET['id'] ?>)">Ukloni prijatelja</h4>
                 <h4>Posalji Poruku</h4>
@@ -64,6 +69,7 @@
                     <h4 id="snd-frnd-req" onclick="friendRequest(<?php echo $_GET['id'] ?>)">Dodaj prijatelja</h4>
                 <?php } ?>
                 
+            <?php } ?>
             <?php } ?>
             </div>
         </div>

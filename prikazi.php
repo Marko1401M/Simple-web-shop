@@ -44,7 +44,7 @@
     <div id="prikaz-oglasa">
         <img id="slika-oglasa" src="<?php echo $oglas['path_slike'] ?>">
         <h2><?php echo $oglas['naslov']; ?></h2>
-        <h3>Oglas postavio: <?php echo $autor['username']; ?></h3>
+        <h3>Oglas postavio: <span style="cursor:pointer" onclick="prikaziKorisnika(<?php echo $autor['id'] ?>)"><?php echo $autor['username']; ?></span></h3>
         <?php if($autor['id'] != $_SESSION['id']){ ?><a onclick="posaljiPoruku()" id="snd-msg">Posalji poruku</a><?php } ?>
         <div id="flw-div">
         <?php if($baza->proveriPracenje($oglas['id'], $_SESSION['id'])){ ?>
@@ -74,6 +74,9 @@
 </div>
 
 <script>
+    function prikaziKorisnika(id){
+        window.location = "prikaz_korisnika.php?id=" + id;
+    }
     function zapratiOglas(id_oglasa, id_korisnika){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){

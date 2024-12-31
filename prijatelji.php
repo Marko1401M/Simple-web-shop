@@ -22,6 +22,8 @@
     $kategorije = $baza->getKategorije();
     $userInfo = $baza->getUserInfo($_SESSION['id']);
     $oglasi = $baza->getOglasi();//Naravno ovo nije dobra ideja ako ima preveliki broj oglasa, ali obzirom da je ovo sam primer onda neka ga
+    $requests = $baza->getFriendRequests($_SESSION['id']);
+    $friends = $baza->getFriends($_SESSION['id']);
 ?>
 <div id="cnt">
 
@@ -34,7 +36,7 @@
             <li><a href="moj_profil.php">Moj profil</a></li>
             <li><a href="moji_oglasi.php" >Moji oglasi</a></li>
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
-            <li><a href="prijatelji.php">Prijatelji</a></li>
+            <li><a style="color:darkblue;">Prijatelji</a></li>
             <li><a>Poruke</a></li>
             <li><a>Adresar</a></li>
         </ul>
@@ -55,15 +57,26 @@
 </div>
 
 <div id ='sredina'>
-<input style="border:1px solid blue;width:250px;height:40px;font-size:35px;margin-bottom:10px" type="text" id="search" onkeyup="search()"><br>
     <div id="oglasi">
-        <?php foreach($oglasi as $oglas){ ?>
-            <div onclick="prikaziOglas(<?php echo $oglas['id']; ?>)" id="oglas">
-                <img src="<?php echo $oglas['path_slike']; ?>">
-                <h3><?php echo $oglas['naslov']; ?></h3>
-                <p><?php echo $oglas['tekst']; ?></p>
-            </div>
-        <?php } ?>
+        <ul id = 'lista-zahteva'>
+        <?php foreach($requests as $req){ $fr = $baza->getUserById($req['id_from']); if($req['status'] == 'waiting'){ ?>
+            <li>
+                <a onclick="prikaziKorisnika(<?php echo $req['id_from']; ?>)"><?php echo $fr['username']; ?></a>
+                <button onclick="accept(<?php echo $req['id_from']?>, <?php echo $_SESSION['id']; ?>)">Prihvati</button>
+                <button onclick="decline(<?php echo $req['id_from']?>, <?php echo $_SESSION['id']; ?>)">Odbij</button>
+            </li>
+        <?php }} ?>
+        </ul>
+        <h4>Friend list:</h4>
+        <ul id="prika-prijatelja">
+            <?php foreach($friends as $friend){ ?>
+                <li>
+                    <a onclick="prikaziKorisnika(<?php if($friend['id_user1'] != $_SESSION['id']) echo $friend['id_user1']; else echo $friend['id_user2'] ?>)">
+                        <?php if($friend['id_user1'] != $_SESSION['id']) echo $baza->getUserById($friend['id_user1'])['username']; else echo $baza->getUserById($friend['id_user2'])['username']; ?>
+                    </a>
+                </li>
+            <?php } ?>
+        </ul>
     </div>
 </div>
 
@@ -74,6 +87,42 @@
 </div>
 
 <script>
+    function decline(id_from, id_to){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                let reqs = JSON.parse(this.responseText);
+                prikaziZahteve(reqs);
+            }
+        }
+        xhttp.open('GET','friend_request.php?obij=1&id_from=' + id_from + '&id_to=' + id_to, true);
+        xhttp.send();
+    }
+    function accept(id_from, id_to){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                console.log(this.responseText);
+                let reqs = JSON.parse(this.responseText);
+                console.log(reqs);
+                prikaziZahteve(reqs);
+            }
+        }
+        xhttp.open('GET','friend_request.php?prihvati=1&id_from=' + id_from + '&id_to=' + id_to, true);
+        xhttp.send();
+    }
+    function prikaziZahteve(reqs){
+        let pom = '';
+        reqs.forEach(element => {
+            pom += '<li><a>'
+            pom +=  element.username;
+            pom += '</a>'
+            pom += '<button onclick="accept('+ element.id_from +','+ element.id_to +')">Prihvati </button>'
+            pom += '<button onclick="decline('+ element.id_from +','+ element.id_to +')">Odbij </button>'
+            pom += '</li>'
+        });
+        document.getElementById('lista-zahteva').innerHTML = pom;
+    }
     function prikaziOglas(id){
         window.location="prikazi.php?id="+id;
     }
@@ -87,7 +136,6 @@
             pom += '</div>';
         });
         document.getElementById('oglasi').innerHTML = pom;
-        document.getElementById
     }
     function pretraziKorisnike(){
         let xhttp = new XMLHttpRequest();
@@ -126,16 +174,5 @@
         xhttp.open('GET','prikazi_kategoriju.php?id=' + id,true);
         xhttp.send();
     }
-    function search(){
-        let text = document.getElementById('search').value;
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-            if(this.status == 200 && this.readyState == 4){
-                let oglasi = JSON.parse(this.responseText);
-                prikaziOglase(oglasi);
-            }
-        }
-        xhttp.open('GET','pretrazi.php?naslov=' + text, true);
-        xhttp.send();   
-    }
+
 </script>

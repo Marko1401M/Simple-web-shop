@@ -218,4 +218,26 @@ class BazaKP{
             echo $e->getMessage();
         }
     }
+    public function acceptFriendRequest($id1, $id2){
+        try{
+            $sql = "INSERT INTO friend(id_user1, id_user2) VALUES('$id1','$id2')";
+            $this->dbh->exec($sql);
+            $sql = "UPDATE friend_request SET status = 'accepted' where id_from = '$id1' and id_to ='$id2' and status='waiting'";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    public function getFriends($id){
+        try{
+            $sql = "SELECT * from friend where id_user1 = '$id' or id_user2='$id'";
+            $stmt = $this->dbh->query($sql);
+            $friends = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $friends;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
 }
