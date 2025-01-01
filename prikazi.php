@@ -30,7 +30,7 @@
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
             <li><a href="poruke.php">Poruke</a></li>
-            <li><a>Adresar</a></li>
+            <li><a href="adresar.php">Adresar</a></li>
         </ul>
     </div>
     <div id="kategorije">

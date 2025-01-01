@@ -38,7 +38,7 @@
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
             <li><a href="poruke.php">Poruke</a></li>
-            <li><a>Adresar</a></li>
+            <li><a href="adresar.php">Adresar</a></li>
         </ul>
     </div>
     <div id="kategorije">
@@ -78,7 +78,7 @@
                 Dodaj u Adresar
                 </button>
             <?php } ?>
-            
+            <h4 onclick="prikaziOglase(<?php echo $_GET['id']; ?>)">Prikazi oglase</h4>
         </div>
         
     </div>
@@ -93,8 +93,8 @@
 </div>
 
 <script>
-    function prikaziOglas(id){
-        window.location="prikazi.php?id="+id;
+    function prikaziOglase(id){
+        window.location = "prikazi_oglase_korisnika.php?id=" + id;
     }
     function posaljiPoruku(id){
         window.location = "chat.php?id=" + id;

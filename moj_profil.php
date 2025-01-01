@@ -34,7 +34,7 @@
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
             <li><a href="poruke.php">Poruke</a></li>
-            <li><a>Adresar</a></li>
+            <li><a href="adresar.php">Adresar</a></li>
         </ul>
     </div>
     <div id="kategorije">
@@ -68,25 +68,6 @@
 
 </div>
 
-<script>
-    function prikaziOglas(id){
-        window.location="prikazi.php?id="+id;
-    }
-    function deleteOglas(id){
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-            if(this.status == 200 && this.readyState == 4){
-                let oglasi = JSON.parse(this.responseText);
-                prikaziOglase(oglasi);
-            }
-        }
-        xhttp.open('GET','obrisi_oglas.php?id=' + id, true);
-        xhttp.send();
-    }
-    function promeniSifru(){
-        window.location="change_password.php";
-    }
-    function promeniMail(){
-        window.location = "promeni_mail.php";
-    }
+<script src="assets/script.js">
+
 </script>

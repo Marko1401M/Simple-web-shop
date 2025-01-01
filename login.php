@@ -80,42 +80,8 @@
     </div>
 </div>
 
-<script>
-    function validateRegister(){
-        if(document.getElementById('username').value == ""){
-            alert('Niste uneli username');
-            return;
-        }
-        if(document.getElementById('ime').value  == ""){
-            alert('Niste uneli ime');
-            return;
-        }
-        if(document.getElementById('prezime').value  == ""){
-            alert('Niste uneli prezime');
-            return;
-        }
-        if(document.getElementById('broj-telefona').value  == ""){
-            alert('Niste uneli broj telefona');
-            return;
-        }
-        if(document.getElementById('mail').value  == ""){
-            alert('Niste uneli mail');
-            return;
-        }
-        if(document.getElementById('password').value  == ""){
-            alert('Niste uneli sifru');
-            return;
-        }
-        if(document.getElementById('password2').value  == ""){
-            alert('Niste potvrdili sifru');
-            return;
-        }
-        document.getElementById('register-forma').submit();
-    }
-    function register(){
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('register').style.display = '';
-    }
+<script src="assets/script.js">
+    
 </script>
 
 
