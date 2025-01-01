@@ -36,8 +36,8 @@
             <li><a style="color:darkblue;">Moj profil</a></li>
             <li><a href="moji_oglasi.php" >Moji oglasi</a></li>
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
-            <li><a>Prijatelji</a></li>
-            <li><a>Poruke</a></li>
+            <li><a href="prijatelji.php">Prijatelji</a></li>
+            <li><a href="poruke.php">Poruke</a></li>
             <li><a>Adresar</a></li>
         </ul>
     </div>
@@ -57,11 +57,12 @@
             <h4>Prezime:<span><?php if($userInfo) echo $userInfo['prezime']; else { ?> Peric <?php } ?></span></h4>
             <h4>Email: <span><?php echo $baza->getMail($user['id']) ?></span></h4>
             <h4>Broj oglasa: <span><?php echo count($oglasi) ?></span></h4>
+            <h4 onclick="posaljiPoruku(<?php echo $_GET['id']; ?>)">Posalji Poruku</h4>
             <div id="prikaz-btns">
             <?php if($_SESSION['id'] != $user['id']){ ?>
             <?php if($baza->checkFriend($_SESSION['id'], $_GET['id'])){ ?>
                 <h4 id="snd-frnd-req" onclick="removeFriend(<?php echo $_SESSION['id'] ?>, <?php echo $_GET['id'] ?>)">Ukloni prijatelja</h4>
-                <h4>Posalji Poruku</h4>
+
             <?php } else{ ?>
                 <?php if($baza->checkFriendRequest($_SESSION['id'], $_GET['id'])){ ?>
                     <h4 id="snd-frnd-req" >Zahtev je poslat!</h4>
@@ -72,6 +73,12 @@
             <?php } ?>
             <?php } ?>
             </div>
+            <?php if(!$baza->checkAdresar($_SESSION['id'], $_GET['id'])){ ?>
+                <button id="add-to-adr" onclick="dodajUAdresar(<?php echo $_GET['id']; ?>)">
+                Dodaj u Adresar
+                </button>
+            <?php } ?>
+            
         </div>
         
     </div>
@@ -89,11 +96,15 @@
     function prikaziOglas(id){
         window.location="prikazi.php?id="+id;
     }
+    function posaljiPoruku(id){
+        window.location = "chat.php?id=" + id;
+    }
     function friendRequest(id_to){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.status == 200 && this.readyState == 4){
                 console.log(this.response);
+                checkButton(1);
             }
         }
         console.log(id_to);
@@ -104,5 +115,15 @@
         if(val == 1){
             document.getElementById('prikaz-btns');
         }
+    }
+    function dodajUAdresar(id){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState == 4){
+                document.getElementById('add-to-adr').style.display = 'none';
+            }
+        }
+        xhttp.open('GET','add_to_adresar.php?id=' + id, true);
+        xhttp.send();
     }
 </script>

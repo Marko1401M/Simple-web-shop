@@ -291,4 +291,44 @@ class BazaKP{
 
         }
     }
+    public function dodajUAdresar($user_id, $seller_id){
+        try{
+            $sql = "INSERT INTO Adresar(id_user, id_seller) VALUES('$user_id','$seller_id')";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function getAdresar($user_id){
+        try{
+            $sql = "SELECT * from adresar where id_user = '$user_id'";
+            $stmt = $this->dbh->query($sql);
+            $adresar = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $adresar;
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function checkAdresar($user_id, $seller_id){
+        try{
+            $sql = "SELECT * from adresar where id_user = '$user_id' and id_seller = '$seller_id'";
+            $stmt = $this->dbh->query($sql);
+            if($stmt->rowCount() > 0) return true;
+            return false;
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function izbaciIzAdresara($user_id, $seller_id){
+        try{
+            $sql = "DELETE FROM adresar where id_user = '$user_id' and id_seller = '$seller_id'";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+
+        }
+    }
 }

@@ -22,6 +22,7 @@
     $kategorije = $baza->getKategorije();
     $userInfo = $baza->getUserInfo($_SESSION['id']);
     $oglasi = $baza->getOglasi();//Naravno ovo nije dobra ideja ako ima preveliki broj oglasa, ali obzirom da je ovo sam primer onda neka ga
+    $adresar = $baza->getAdresar($_SESSION['id']);
 ?>
 <div id="cnt">
 
@@ -36,7 +37,7 @@
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
             <li><a href="poruke.php">Poruke</a></li>
-            <li><a href="adresar.php">Adresar</a></li>
+            <li><a>Adresar</a></li>
         </ul>
     </div>
     <div id="kategorije">
@@ -47,23 +48,27 @@
     <div style="border-top:1px solid blue;margin-top:5px;margin-bottom:5px;padding:5px;" id="korisnici">
         <h4 style="margin-bottom:0">Pretrazi korisnike: <input id="src-btn-usr" onclick="pretraziKorisnike()" type="button" value="Pretrazi">    </h4>
         <input id='search-korisnika' type="text">
-        <div id="prikaz-korisnika">
-
-        </div>
+        
         
     </div>
 </div>
 
 <div id ='sredina'>
-<input style="border:1px solid blue;width:250px;height:40px;font-size:35px;margin-bottom:10px" type="text" id="search" onkeyup="search()"><br>
-    <div id="oglasi">
-        <?php foreach($oglasi as $oglas){ ?>
-            <div onclick="prikaziOglas(<?php echo $oglas['id']; ?>)" id="oglas">
-                <img src="<?php echo $oglas['path_slike']; ?>">
-                <h3><?php echo $oglas['naslov']; ?></h3>
-                <p><?php echo $oglas['tekst']; ?></p>
-            </div>
-        <?php } ?>
+<div style="border-top:1px solid blue;margin-top:5px;margin-bottom:5px;padding:5px;" id="korisnici">
+
+        <div id="prikaz-korisnika">
+        <ul id="lista-adresar">
+                <?php foreach($adresar as $usr){ ?>
+                    <li>
+                        <a onclick="prikaziKorisnika(<?php echo $usr['id_seller']; ?>)"><?php echo $baza->getUserById($usr['id_seller'])['username']; ?></a>
+                        <button id="rem-fr-adr" onclick="izbaciIzAdresara(<?php echo $usr['id_seller'] ?>)">
+                            Izbaci iz adresara
+                        </button>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+        
     </div>
 </div>
 
@@ -77,42 +82,28 @@
     function prikaziOglas(id){
         window.location="prikazi.php?id="+id;
     }
-    function prikaziOglase(oglasi){
-        let pom = '';
-        oglasi.forEach(element => {
-            pom += '<div id="oglas">';
-            pom += '<img src="' + element.path_slike + '">';
-            pom += '<h3>' + element.naslov + '</h3>';
-            pom += '<p>' + element.tekst + '</p>';
-            pom += '</div>';
-        });
-        document.getElementById('oglasi').innerHTML = pom;
-        document.getElementById
+    function prikaziKorisnika(id){
+        window.location = "prikaz_korisnika.php?id=" + id;
     }
-    function pretraziKorisnike(){
+    function izbaciIzAdresara(id){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.status == 200 && this.readyState == 4){
-                let users = JSON.parse(this.responseText);
-                console.log(users);
-                prikaziKorisnike(users);
+                prikaziAdresar(JSON.parse(this.responseText));
             }
         }
-        xhttp.open('GET','pretrazi_korisnike.php?name='+ document.getElementById('search-korisnika').value,true);
+        xhttp.open('GET',"add_to_adresar.php?izbaci=1&id=" + id, true);
         xhttp.send();
     }
-    function prikaziKorisnike(users){
-        let pom = '<ul id ="lista-korisnika" >';
-        users.forEach(element => {
-            pom += '<li><a onclick="prikaziKorisnika('+element.id+')">'
-            pom += element.username;
-            pom += '</a></li>';
+    function prikaziAdresar(adresar){
+        let pom = '';
+        adresar.forEach(element => {
+            pom += '<li>'
+            pom += '<a>' + element.username + '</a>'
+            pom += '<button onclick="izbaciIzAdresara('+ element.id_seller +')">' + 'Izbaci iz adresara' + '</button>';
+            pom += '</li>'
         });
-        pom += '</ul>';
-        document.getElementById('prikaz-korisnika').innerHTML = pom;
-    }
-    function prikaziKorisnika(id){
-        window.location = "prikaz_korisnika.php?id=" + id;
+        document.getElementById('lista-adresar').innerHTML = pom;
     }
     function prikaziKategoriju(id){
         let xhttp = new XMLHttpRequest();
@@ -125,17 +116,5 @@
         }
         xhttp.open('GET','prikazi_kategoriju.php?id=' + id,true);
         xhttp.send();
-    }
-    function search(){
-        let text = document.getElementById('search').value;
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-            if(this.status == 200 && this.readyState == 4){
-                let oglasi = JSON.parse(this.responseText);
-                prikaziOglase(oglasi);
-            }
-        }
-        xhttp.open('GET','pretrazi.php?naslov=' + text, true);
-        xhttp.send();   
     }
 </script>

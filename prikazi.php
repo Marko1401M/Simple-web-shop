@@ -29,7 +29,7 @@
             <li><a href="moji_oglasi.php">Moji oglasi</a></li>
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
-            <li><a>Poruke</a></li>
+            <li><a href="poruke.php">Poruke</a></li>
             <li><a>Adresar</a></li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
         <img id="slika-oglasa" src="<?php echo $oglas['path_slike'] ?>">
         <h2><?php echo $oglas['naslov']; ?></h2>
         <h3>Oglas postavio: <span style="cursor:pointer" onclick="prikaziKorisnika(<?php echo $autor['id'] ?>)"><?php echo $autor['username']; ?></span></h3>
-        <?php if($autor['id'] != $_SESSION['id']){ ?><a onclick="posaljiPoruku()" id="snd-msg">Posalji poruku</a><?php } ?>
+        <?php if($autor['id'] != $_SESSION['id']){ ?><a onclick="posaljiPoruku(<?php echo $autor['id']; ?>)" id="snd-msg">Posalji poruku</a><?php } ?>
         <div id="flw-div">
         <?php if($baza->proveriPracenje($oglas['id'], $_SESSION['id'])){ ?>
             <a onclick="otpratiOglas(<?php echo $oglas['id'] ?>, <?php echo $_SESSION['id']; ?>)" id="flwd-oglas">Oglas je pracen</a><br>
@@ -74,6 +74,9 @@
 </div>
 
 <script>
+    function posaljiPoruku(id){
+        window.location = "chat.php?id=" + id;
+    }
     function prikaziKorisnika(id){
         window.location = "prikaz_korisnika.php?id=" + id;
     }

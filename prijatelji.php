@@ -30,14 +30,14 @@
 <div id="leviMeni">
     <a id="logOut" href="index.php?Logout">LogOut</a>
 
-    <h3>Dobrodosao <?php if($userInfo) echo $userInfo['ime']." ".$userInfo['prezime']. " "; ?> <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
+    <h3>Dobrodosao <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
     <div id="profil">
         <ul>  
             <li><a href="moj_profil.php">Moj profil</a></li>
             <li><a href="moji_oglasi.php" >Moji oglasi</a></li>
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a style="color:darkblue;">Prijatelji</a></li>
-            <li><a>Poruke</a></li>
+            <li><a href="poruke.php">Poruke</a></li>
             <li><a>Adresar</a></li>
         </ul>
     </div>

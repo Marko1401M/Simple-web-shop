@@ -479,5 +479,5 @@ img{
 }
 
 #poruke{
-    overflow: scroll;
+    overflow: auto;
 }
