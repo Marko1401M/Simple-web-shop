@@ -461,3 +461,23 @@ img{
     border-radius:16px;
     padding:5px;
 }
+
+.sender-msg{
+    background-color: rgb(114, 114, 226);
+    margin:5px;
+    border-radius: 16px;
+    padding:5px;
+    text-align: right;
+}
+
+.reciever-msg{
+    background-color: rgb(216, 216, 233);
+    margin:5px;
+    border-radius: 16px;
+    padding:5px;
+    text-align: left;   
+}
+
+#poruke{
+    overflow: scroll;
+}

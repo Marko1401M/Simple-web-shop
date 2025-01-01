@@ -141,8 +141,8 @@ class BazaKP{
         try{
             $sql = "SELECT * from user_info where user_id = '$id'";
             $stmt = $this->dbh->query($sql);
-            $info = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $info;
+            $info = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $info[0];
         }
         catch(PDOException $e){
 
@@ -238,6 +238,57 @@ class BazaKP{
         }
         catch(PDOException $e){
             echo $e->getMessage();
+        }
+    }
+    public function getChats($id1){
+        try{
+            $sql = "SELECT * from chat where sender_id = '$id1' or reciever_id ='$id1'";
+            $stmt = $this->dbh->query($sql);
+            $chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $chats;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    public function getChat($id1, $id2){
+        try{
+            $sql = "SELECT * from chat where (sender_id = '$id1' and reciever_id ='$id2') or (sender_id = '$id2' and reciever_id ='$id1')";
+            $stmt = $this->dbh->query($sql);
+            $chat = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $chat;
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function createChat($id1, $id2){
+        try{
+            $sql = "INSERT into chat(sender_id, reciever_id) VALUES('$id1','$id2')";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function getMessages($chat_id){
+        try{
+            $sql = "SELECT * from poruka where chat_id = '$chat_id'";
+            $stmt = $this->dbh->query($sql);
+            $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $messages;
+        }
+        catch(PDOException $e){
+
+        }
+    }
+    public function sendMessage($chat_id, $from, $to, $text){
+        try{
+            $sql = "INSERT into poruka(chat_id, sender_id, reciever_id, text) VALUES('$chat_id','$from','$to','$text')";
+            $this->dbh->exec($sql);
+        }
+        catch(PDOException $e){
+
         }
     }
 }

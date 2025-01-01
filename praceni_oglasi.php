@@ -31,7 +31,7 @@
             <li><a href="moj_profil.php">Moj profil</a></li>
             <li><a href="moji_oglasi.php" >Moji oglasi</a></li>
             <li><a style="color:darkblue;" >Oglasi koje pratim</a></li>
-            <li><a>Prijatelji</a></li>
+            <li><a href="prijatelji.php">Prijatelji</a></li>
             <li><a>Poruke</a></li>
             <li><a>Adresar</a></li>
         </ul>
