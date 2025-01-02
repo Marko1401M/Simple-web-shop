@@ -30,8 +30,8 @@
             <li><a href="moji_oglasi.php" >Moji oglasi</a></li>
             <li><a href="praceni_oglasi.php">Oglasi koje pratim</a></li>
             <li><a href="prijatelji.php">Prijatelji</a></li>
-            <li><a>Poruke</a></li>
-            <li><a>Adresar</a></li>
+            <li><a href="poruke.php">Poruke</a></li>
+            <li><a href="adresar.php">Adresar</a></li>
         </ul>
     </div>
     <div id="kategorije">
@@ -43,7 +43,7 @@
 
 <div id ='sredina'>
     <div id="user-display">
-        <h3 style="border-bottom:1px solid blue"><span><?php if($other) echo $other['ime']." ".$other['prezime']; ?></span></h3>
+        <h3 style="border-bottom:1px solid blue"><span id="ime-prez" onclick="prikaziKorisnika(<?php echo $other['user_id'] ?>)"><?php if($other) echo $other['ime']." ".$other['prezime']; ?></span></h3>
         <div id="poruke" style="height:500px">
             <?php foreach($poruke as $poruka){ ?>
                 <div class="<?php if($poruka['sender_id'] == $_SESSION['id']) echo 'sender-msg'; else echo 'reciever-msg' ?>"><?php echo $poruka['text'] ?></div>
@@ -63,6 +63,9 @@
 <script>
     const poruke = document.getElementById('poruke');
     poruke.scrollTop = poruke.scrollHeight;
+    function prikaziKorisnika(id){
+        window.location = "prikaz_korisnika.php?id=" + id;
+    }
     function sendMessage(reciever_id, chat_id){
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){

@@ -61,20 +61,20 @@
             <div id="prikaz-btns">
             <?php if($_SESSION['id'] != $user['id']){ ?>
             <?php if($baza->checkFriend($_SESSION['id'], $_GET['id'])){ ?>
-                <h4 id="snd-frnd-req" onclick="removeFriend(<?php echo $_SESSION['id'] ?>, <?php echo $_GET['id'] ?>)">Ukloni prijatelja</h4>
+                <h4 style="margin-left:10px;" id="snd-frnd-req" onclick="removeFriend(<?php echo $_SESSION['id'] ?>, <?php echo $_GET['id'] ?>)">Ukloni prijatelja</h4>
 
             <?php } else{ ?>
                 <?php if($baza->checkFriendRequest($_SESSION['id'], $_GET['id'])){ ?>
-                    <h4 id="snd-frnd-req" >Zahtev je poslat!</h4>
+                    <h4 style="margin-left:10px;" id="snd-frnd-req" >Zahtev je poslat!</h4>
                 <?php } else{ ?>
-                    <h4 id="snd-frnd-req" onclick="friendRequest(<?php echo $_GET['id'] ?>)">Dodaj prijatelja</h4>
+                    <h4 style="margin-left:10px;"  id="snd-frnd-req" onclick="friendRequest(<?php echo $_GET['id'] ?>)">Dodaj prijatelja</h4>
                 <?php } ?>
                 
             <?php } ?>
             <?php } ?>
             </div>
             <?php if(!$baza->checkAdresar($_SESSION['id'], $_GET['id'])){ ?>
-                <button id="add-to-adr" onclick="dodajUAdresar(<?php echo $_GET['id']; ?>)">
+                <button class="adr" id="add-to-adr" onclick="dodajUAdresar(<?php echo $_GET['id']; ?>)">
                 Dodaj u Adresar
                 </button>
             <?php } ?>

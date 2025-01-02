@@ -67,11 +67,11 @@
             </li>
         <?php }} ?>
         </ul>
-        <h4>Friend list:</h4>
-        <ul id="prika-prijatelja">
+        <h4 style="margin-left:10px;">Friend list:</h4>
+        <ul id="prikaz-prijatelja">
             <?php foreach($friends as $friend){ ?>
                 <li>
-                    <a onclick="prikaziKorisnika(<?php if($friend['id_user1'] != $_SESSION['id']) echo $friend['id_user1']; else echo $friend['id_user2'] ?>)">
+                    <a class="frnd" onclick="prikaziKorisnika(<?php if($friend['id_user1'] != $_SESSION['id']) echo $friend['id_user1']; else echo $friend['id_user2'] ?>)">
                         <?php if($friend['id_user1'] != $_SESSION['id']) echo $baza->getUserById($friend['id_user1'])['username']; else echo $baza->getUserById($friend['id_user2'])['username']; ?>
                     </a>
                 </li>

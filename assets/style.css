@@ -481,3 +481,97 @@ img{
 #poruke{
     overflow: auto;
 }
+
+.prikaz-k-1{
+    cursor:pointer;
+    margin-bottom: 5px;
+    width:200px;
+    overflow: hidden;
+    padding:2px;
+
+}
+
+.prikaz-k-1:hover{
+    background-color: rgba(0, 0, 0, 0.212);
+    color:White;
+}
+
+#chatovi{
+    list-style-type: none;
+    padding:5px;
+    border-top:1px solid blue;
+    border-bottom: 1px solid blue;
+    border-left:1px solid blue;
+    border-top-left-radius: 16px;
+    overflow: hidden;
+    width:200px;
+}
+
+#ime-prez{
+    color:rgb(114, 114, 226);
+    cursor:pointer;
+}
+
+#ime-prez:hover{
+    background-color: rgba(80, 224, 205, 0.521);
+}
+
+.adr{
+    color:black;
+    background-color: rgba(164, 164, 238, 0.245);
+    width:150px;
+    border:1px solid rgb(154, 154, 235);
+    cursor:pointer;
+    margin-left:10px;
+}
+
+.adr:hover{
+    color:black;
+    background-color: rgba(164, 164, 238, 0.245);
+    width:150px;
+    border:1px solid blue;
+    cursor:pointer;
+}
+
+#prikaz-prijatelja{
+    list-style-type: none;
+    padding:5px;
+    border-top:1px solid blue;
+    border-bottom: 1px solid blue;
+    border-left:1px solid blue;
+    border-top-left-radius: 16px;
+    overflow: hidden;
+    width:200px;
+    margin-left:10px;
+}
+
+.frnd{
+    cursor:pointer;
+    margin-bottom: 5px;
+    width:200px;
+    overflow: hidden;
+    padding:2px;
+}
+
+.frnd:hover{
+    background-color: rgba(0, 0, 0, 0.212);
+    color:White;
+}
+
+#lista-adresar{
+    list-style-type:none;
+    padding: 5px;;
+    float:left;
+}
+
+.adr-pr{
+    cursor:pointer;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding:2px;
+}
+
+.adr-pr:hover{
+    background-color: rgba(0, 0, 0, 0.212);
+    color:White;
+}

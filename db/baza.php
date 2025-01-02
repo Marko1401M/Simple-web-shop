@@ -296,7 +296,7 @@ class BazaKP{
             $st1 = 'accepted';
             $st2 = 'waiting';
 
-            $sql = "UPDATE friend_request SET status = :st1 where id_from = :id1 and id_to =:id2 and status= :id2";
+            $sql = "UPDATE friend_request SET status = :st1 where id_from = :id1 and id_to =:id2 and status= :st2";
             $stmt->bindParam(':id1',$id1);
             $stmt->bindParam(':id2',$id2);
             $stmt->bindParam(':st1',$st1);

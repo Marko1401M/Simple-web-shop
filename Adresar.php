@@ -57,11 +57,12 @@
 <div style="border-top:1px solid blue;margin-top:5px;margin-bottom:5px;padding:5px;" id="korisnici">
 
         <div id="prikaz-korisnika">
+            <h5 style="margin-bottom:5px;border-bottom:1px solid blue;overflow:hidden;width:390px">Lista osoba koje se nalaze u Vasem adresaru:</h5>
         <ul id="lista-adresar">
                 <?php foreach($adresar as $usr){ ?>
                     <li>
-                        <a onclick="prikaziKorisnika(<?php echo $usr['id_seller']; ?>)"><?php echo $baza->getUserById($usr['id_seller'])['username']; ?></a>
-                        <button id="rem-fr-adr" onclick="izbaciIzAdresara(<?php echo $usr['id_seller'] ?>)">
+                        <a  class="adr-pr" onclick="prikaziKorisnika(<?php echo $usr['id_seller']; ?>)"><?php echo $baza->getUserById($usr['id_seller'])['username']; ?></a>
+                        <button class="adr" id="rem-fr-adr" onclick="izbaciIzAdresara(<?php echo $usr['id_seller'] ?>)">
                             Izbaci iz adresara
                         </button>
                     </li>

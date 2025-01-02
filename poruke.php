@@ -39,14 +39,15 @@
 
 <div id ='sredina'>
     <div id="prikaz-chatova">
-        <input id='search-korisnika' type="text">
-        <button onclick="pretraziKorisnike()">Pretrazi</button>
+        <input style="height:30px;font-size:15px;" id='search-korisnika' type="text">
+        <button style="width:100px;height:30px;font-size:15px;padding:0" class="adr"onclick="pretraziKorisnike()">Pretrazi</button>
         <div id="prikaz-korisnika">
 
         </div>
-        <ul>
+        <h5 style="margin-bottom:0px;">Chatovi:</h5>
+        <ul id="chatovi">
             <?php foreach($chats as $chat){ ?>
-            <li onclick="otvoriChat(<?php if($chat['sender_id'] != $_SESSION['id']) echo $chat['sender_id']; else echo $chat['reciever_id']; ?>)">
+            <li class="prikaz-k-1" onclick="otvoriChat(<?php if($chat['sender_id'] != $_SESSION['id']) echo $chat['sender_id']; else echo $chat['reciever_id']; ?>)">
                 <?php if($chat['sender_id'] != $_SESSION['id']) echo $baza->getUserById($chat['sender_id'])['username']; else echo $baza->getUserById($chat['reciever_id'])['username']; ?>
             </li>
             <?php } ?>

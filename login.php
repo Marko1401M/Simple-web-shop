@@ -5,6 +5,21 @@
     $checkPassMatch = true;
     $checkUserExists = true;
     $checkValidCred = true;
+    if(isset($_COOKIE['username'])){
+        //$_POST['username'] = $_COOKIE['username'];
+        if(isset($_COOKIE['password'])){
+            $user = $baza->login($_COOKIE['username'], $_COOKIE['password']);
+            if($user){
+            session_start();
+            $_SESSION['id'] = $user['id'];
+            setcookie('username',$_COOKIE['username'],time() + 80000*2);
+            setcookie('password',$_COOKIE['password'],time() + 80000 * 2);
+            header('Location: index.php');
+            exit();
+            }
+            
+        }
+    }
     if(isset($_POST['password2'])){
         $password = sha1($_POST['password']);
         if($password == sha1($_POST['password2'])){
