@@ -82,6 +82,8 @@
 
 <div id="desno">
     <a href="dodaj.php">Dodaj Oglas</a>
+    <br><br><br>
+    <a href="index.php">Pocetna</a>
 </div>
 
 </div>
