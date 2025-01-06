@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';  
-    $baza = new BazaKP();
+    $baza = new Baza();
     if(!isset($_GET['unfollow'])){
         $baza->followOglas($_GET['id_oglasa'],$_SESSION['id']);
         echo json_encode([1]);

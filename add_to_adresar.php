@@ -7,7 +7,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     if(!isset($_GET['izbaci'])){ 
         $baza->dodajUAdresar($_SESSION['id'], $_GET['id']);
         echo json_encode([]);

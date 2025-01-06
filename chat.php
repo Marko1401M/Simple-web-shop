@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $chat = $baza->getChat($_SESSION['id'], $_GET['id']);
     $kategorije = $baza->getKategorije();
     if(!$chat){

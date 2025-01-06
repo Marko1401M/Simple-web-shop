@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $kategorije = $baza->getKategorije();
     if(isset ($_POST['password'])){
         $password = sha1($_POST['password']);

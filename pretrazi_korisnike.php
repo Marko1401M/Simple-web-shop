@@ -8,7 +8,7 @@
     }
 
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
 
     $users = $baza->findUserByUsername($_GET['name']);
 

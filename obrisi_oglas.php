@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $baza->deleteOglas($_GET['id']);
     echo json_encode($baza->getOglasiById($_SESSION['id']));
 ?>

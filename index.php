@@ -4,7 +4,7 @@
 </head>
 <?php 
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     session_start();
     if(!isset($_SESSION['id'])){
         header('Location: login.php');
@@ -27,7 +27,6 @@
 
 <div id="leviMeni">
     <a id="logOut" href="index.php?Logout">LogOut</a>
-
     <h3>Dobrodosao <span style="color:blue;"><?php echo $user['username']; ?></span>!</h3>
     <div id="profil">
         <ul>  

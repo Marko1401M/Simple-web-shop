@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $kategorije = $baza->getKategorije();
     if(isset($_POST['mail'])){
         $baza->updateMail($_SESSION['id'], $_POST['mail']);

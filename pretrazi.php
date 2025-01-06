@@ -6,7 +6,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $oglasi = $baza->pretrazi($_GET['naslov']);
     echo json_encode($oglasi);  
 ?>

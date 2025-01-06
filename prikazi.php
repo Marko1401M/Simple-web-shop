@@ -8,7 +8,7 @@
         exit();
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $oglas = $baza->getOglas($_GET['id']);
     $kategorije = $baza->getKategorije();
     $user = $baza->getUserById($_SESSION['id']);

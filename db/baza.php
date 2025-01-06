@@ -1,8 +1,8 @@
 <?php 
 
-class BazaKP{
+class Baza{
     const ime_hosta = 'localhost';
-    const ime_baze = 'KP';
+    const ime_baze = 'db_shop';
     const ime_korisnika = 'root';
     const sifra_korisnika = '';
     private $dbh;
@@ -198,7 +198,6 @@ class BazaKP{
             return $info;
         }
         catch(PDOException $e){
-
         }
     }
     public function pretrazi($naslov){

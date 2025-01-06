@@ -5,7 +5,7 @@
         header('Location: login.php');
     }
     require_once 'db/baza.php';
-    $baza = new BazaKP();
+    $baza = new Baza();
     $kategorije = $baza->getKategorije();
     if(isset($_POST['naslov'])){
         $target_file = "images/".basename($_FILES["fileToUpload"]["name"]);
