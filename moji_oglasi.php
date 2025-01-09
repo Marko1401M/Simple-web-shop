@@ -69,6 +69,9 @@
 </div>
 
 <script>
+    function izmeniOglas(id){
+        window.location = "izmeni_oglas.php?id=" + id;
+    }
     function prikaziOglas(id){
         window.location="prikazi.php?id="+id;
     }

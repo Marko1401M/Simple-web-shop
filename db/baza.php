@@ -437,4 +437,19 @@ class Baza{
         }
     }
 
+    public function updateOglas($id, $naslov, $tekst, $kat, $path_slike){
+        try{
+            $sql = "UPDATE oglas set naslov = :naslov, id_kategorije = :id_kat, tekst=:tekst, path_slike = :path_slike where id = :id";
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindParam(':naslov',$naslov);
+            $stmt->bindParam(':tekst',$tekst);
+            $stmt->bindParam(':id_kat',$kat);
+            $stmt->bindParam(':path_slike',$path_slike);
+            $stmt->bindParam(':id',$id);
+            $stmt->execute();
+        }
+        catch(PDOException $e){
+            
+        }
+    }
 }

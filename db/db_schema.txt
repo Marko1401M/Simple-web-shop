@@ -34,3 +34,18 @@ FOLLOW:
 CHAT:	
 	-sender_id
 	-reciever_id
+ADMIN:
+	-id
+	-username
+	-password
+ADRESAR:
+	-id_user
+	-id_seller
+FRIEND:
+	-id_user1
+	-id_user2
+FRIEND_REQUEST:
+	-id
+	-id_from
+	-id_to
+	-status
